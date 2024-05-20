@@ -26,6 +26,16 @@
             <input type="text" class="form-control" id="adress" name="adress">
             <div id="idadresserror"  th:errors="${client.adress}"   class="form-text  text-danger"></div>
         </div>
+        <div class="mb-3">
+            <label for="telephone" class="form-label">telephone</label>
+            <input type="text" class="form-control" id="telephone" name="telephone">
+            <div id="idtelephoneerror"  th:errors="${client.telephone}"   class="form-text  text-danger"></div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">email</label>
+            <input type="text" class="form-control" id="email" name="email">
+            <div id="idemailerror"  th:errors="${client.email}"   class="form-text  text-danger"></div>
+        </div>
         <button type="submit" class="btn btn-primary" id="submit">Submit</button>
     </form>
 </div>

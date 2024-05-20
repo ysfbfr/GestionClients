@@ -29,10 +29,17 @@
             <label for="adress" class="form-label">Adresse</label>
             <input type="text" id="adress" th:field="*{adress}" class="form-control" required>
         </div>
+        <div class="mb-3">
+            <label for="telephone" class="form-label">telephone</label>
+            <input type="text" id="telephone" th:field="*{telephone}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">email</label>
+            <input type="text" id="email" th:field="*{email}" class="form-control" required>
+        </div>
         <button type="submit" class="btn btn-primary">Update</button>
         <a href="/home" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
-
 </body>
 </html>

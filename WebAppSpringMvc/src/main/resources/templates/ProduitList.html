@@ -33,7 +33,7 @@
             <td th:text="${p.getPrix}"></td>
             <td>
                 <a  class="btn btn-danger" onclick="confirmDelete('${p.getId_produit}')">Delete</a>
-                <a  class="btn btn-primary">Modify</a>
+                <a  class="btn btn-primary" th:href="@{/edit-produit/{id_produit}(id=${p.id_produit})}">Modify</a>
             </td>
         </tr>
         </tbody>
@@ -43,21 +43,19 @@
 
     <nav aria-label="...">
         <ul class="pagination">
-            <li class="page-item disabled">
-                <span  class="page-link">Previous</span>
+            <li class="page-item" th:classappend="${currentpage == 0} ? 'disabled'">
+                <a class="page-link" th:href="@{/ProduitList(numpage=${currentpage > 0} ? ${currentpage - 1} : 0)}">Previous</a>
             </li>
-            <li class="page-item"><a th:href="@{/ProduitList(numpage=${currentpage> 0 ? currentpage-1 : 0 })}" th:text="${currentpage> 0 ? currentpage-1 : 0 }" class="page-link" href="#"></a></li>
-            <li class="page-item active" aria-current="page">
-                <a th:text="${currentpage}" class="page-link"></a>
+            <li class="page-item" th:each="i : ${#numbers.sequence(0, totalpage - 1)}" th:classappend="${i == currentpage} ? 'active'">
+                <a class="page-link" th:href="@{/ProduitList(numpage=${i})}" th:text="${i + 1}"></a>
             </li>
-            <li class="page-item"><a  th:href="@{/ProduitList(numpage=${currentpage<totalpage ? currentpage+1 : currentpage })}" th:text="${currentpage<totalpage ? currentpage+1 : currentpage }" class="page-link" href="#"></a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
+            <li class="page-item" th:classappend="${currentpage >= totalpage - 1} ? 'disabled'">
+                <a class="page-link" th:href="@{/ProduitList(numpage=${currentpage < totalpage - 1} ? ${currentpage + 1} : ${totalpage - 1})}">Next</a>
             </li>
         </ul>
     </nav>
 
-    <button type="button" class="btn btn-success" onclick="location.href='/ajouterProduit'">Add Produit</button>
+    <button type="button" class="btn btn-success" onclick="location.href='/Add_Produit'">Add Produit</button>
 </div>
 
 <!-- Button to add a new client -->

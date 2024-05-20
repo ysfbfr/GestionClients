@@ -29,4 +29,9 @@ public class Client {
 	
 	@NotEmpty
 	private String adress;
+	@NotEmpty
+	private String telephone;
+	@NotEmpty
+	private String email;
+
 }
