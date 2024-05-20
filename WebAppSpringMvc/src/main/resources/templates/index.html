@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Client List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div th:insert="~{Navbar :: menu}"></div>
+
+<div class="container">
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prenom</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${maliste}">
+            <th scope="row" th:text="${p.id}"></th>
+            <td th:text="${p.nom}"></td>
+            <td th:text="${p.prenom}"></td>
+            <td th:text="${p.adress}"></td>
+            <td>
+                <button class="btn btn-danger" th:onclick="'confirmDelete(' + ${p.id} + ')'">Delete</button>
+                <a class="btn btn-primary" th:href="@{/edit-client(id=${p.id})}">Modify</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <nav aria-label="...">
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${currentpage == 0} ? 'disabled'">
+                <a class="page-link" th:href="@{/home(numpage=${currentpage > 0} ? ${currentpage - 1} : 0)}">Previous</a>
+            </li>
+            <li class="page-item" th:each="i : ${#numbers.sequence(0, totalpage - 1)}" th:classappend="${i == currentpage} ? 'active'">
+                <a class="page-link" th:href="@{/home(numpage=${i})}" th:text="${i + 1}"></a>
+            </li>
+            <li class="page-item" th:classappend="${currentpage >= totalpage - 1} ? 'disabled'">
+                <a class="page-link" th:href="@{/home(numpage=${currentpage < totalpage - 1} ? ${currentpage + 1} : ${totalpage - 1})}">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+    <button type="button" class="btn btn-success" onclick="location.href='/add-client'">Add Client</button>
+</div>
+
+<script>
+    function confirmDelete(clientId) {
+        if (confirm("Are you sure you want to delete this client?")) {
+            location.href = "/delete-client/" + clientId;
+        }
+    }
+</script>
+
+</body>
+</html>
