@@ -19,7 +19,8 @@ public class WebAppSpringMvcApplication {
 		ApplicationContext ctx =SpringApplication.run(WebAppSpringMvcApplication.class, args);
 		
 		GestionClient gc = ctx.getBean(GestionClient.class);
-		Client c1 = new Client (null , "saad" , "garmes" ,"654 saadrnd kjhzefigz kjjzgekj","0658290472","yboufar6@gmail.com");
+		Client c=new Client();
+	/*	Client c1 = new Client (null , "saad" , "garmes" ,"654 saadrnd kjhzefigz kjjzgekj","0658290472","yboufar6@gmail.com");
 		Client c2 = new Client (null , "sadfgad" , "garmes" ,"654 saadrnd kjhzefigz kjjzgekj","0658290472","yboufar6@gmail.com");
 		Client c3 = new Client (null , "saad" , "garmes" ,"654 saadrnd kjhzefigz kjjzgekj","0658290472","yboufar6@gmail.com");
 
@@ -31,12 +32,16 @@ public class WebAppSpringMvcApplication {
 		gc.ajouterClient (c3);
 		gc.ajouterClient (c4);
 		gc.ajouterClient (c5);
-		gc.ajouterClient(c6);
+		gc.ajouterClient(c6);*/
 		GestionProduit gp = ctx.getBean(GestionProduit.class);
 		Produit p = new Produit();
-		Produit p1 = new Produit (1 , "stylo" , "bic" ,"bleu",2);
+		/*Produit p1 = new Produit (1 , "voiture" , "audi" ,"bleu",111111111);
+		Produit p2 = new Produit (2 , "stylo" , "bic" ,"bleu",2);
+		Produit p3 = new Produit (3 , "Ecran" , "Samsung" ,"bleu",2222);
 		gp.ajouterProduit (p1);
-		
+		gp.ajouterProduit (p2);
+		gp.ajouterProduit (p3);*/
+
 		
 	}
 

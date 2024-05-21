@@ -52,23 +52,24 @@ public class ProduitController {
             return "Add_Produit";
         } else {
             gp.ajouterProduit(p);
-            return "ProduitList";
+            return "redirect:/ProduitList";
         }
 
     }
 
-    @PostMapping("/delete-produit")
-    public String deleteProduit(@RequestParam("id_produit") Integer id_produit) {
+    @GetMapping("/delete-produit/{id_produit}")
+    public String deleteProduit(@PathVariable("id_produit") int id_produit) {
         gp.supprimerProduit(id_produit);
-
-        // Redirect back to the home page after deleting the client
-         return "redirect:/ProduitList";
+        return "redirect:/ProduitList";
     }
+
+
+
     @GetMapping("/edit-produit/{id_produit}")
-    public String showEditProduitForm(@PathVariable("id_produit") Integer id, Model model) {
+    public String showEditProduitForm(@PathVariable("id_produit") Integer id_produit, Model model) {
         try {
-          //  Produit produit = gp.getProduitById(id_produit);
-        //    model.addAttribute("produit", produit);
+          Produit produit = gp.getProduitById(id_produit);
+        model.addAttribute("produit", produit);
             return "modifier-produit"; // Le nom du template Thymeleaf pour le formulaire de modification
         } catch (Exception e) {
             // Gérer le cas où le client n'est pas trouvé

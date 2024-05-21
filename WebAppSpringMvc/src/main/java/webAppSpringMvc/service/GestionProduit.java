@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import webAppSpringMvc.dao.Client;
 import webAppSpringMvc.dao.Produit;
 @Data
 @Service
@@ -36,6 +37,8 @@ public class GestionProduit {
 
     public void modifierClient(Produit p) {
         gp.save(p);
-
+    }
+    public Produit getProduitById(int id_produit) throws Exception {
+        return gp.findById(id_produit).orElseThrow(()->new Exception("Not found"));
     }
 }

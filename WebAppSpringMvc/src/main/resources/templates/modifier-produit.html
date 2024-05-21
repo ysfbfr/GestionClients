@@ -2,37 +2,40 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Update Produit</title>
+    <title>Edit Produit</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </head>
 <body>
+
+<div th:insert="~{Navbar :: menu}"></div>
+
 <div class="container">
-    <h2>Update Produit</h2>
-    <form th:action="@{/update-produit}"  method="post">
+    <h2>Edit Produit</h2>
+    <form th:action="@{/update-produit}" th:object="${produit}" method="post">
         <div class="mb-3">
-            <label for="titre" class="form-label">Nom</label>
-            <input type="text" class="form-control" id="titre" name="titre">
-            <div id="idnomerror"  th:errors="${produit.titre_produit}"   class="form-text text-danger"></div>
+            <label for="id_produit" class="form-label">ID</label>
+            <input type="text" id="id_produit" th:field="*{id_produit}" class="form-control" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="titre_produit" class="form-label">Nom</label>
+            <input type="text" id="titre_produit" th:field="*{titre_produit}" class="form-control" required>
         </div>
         <div class="mb-3">
             <label for="type" class="form-label">type</label>
-            <input type="text" class="form-control" id="type" name="type">
-            <div id="idtypeerror"  th:errors="${produit.type}"   class="form-text  text-danger"></div>
+            <input type="text" id="type" th:field="*{type}" class="form-control" required>
         </div>
         <div class="mb-3">
             <label for="couleur" class="form-label">couleur</label>
-            <input type="text" class="form-control" id="couleur" name="couleur">
-            <div id="idcolorerror"  th:errors="${produit.couleur}"   class="form-text  text-danger"></div>
+            <input type="text" id="couleur" th:field="*{couleur}" class="form-control" required>
         </div>
         <div class="mb-3">
             <label for="prix" class="form-label">prix</label>
-            <input type="text" class="form-control" id="prix" name="prix">
-            <div id="idprixerror"  th:errors="${produit.prix}"   class="form-text  text-danger"></div>
+            <input type="text" id="prix" th:field="*{prix}" class="form-control" required>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
         <a href="/ProduitList" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </body>
 </html>

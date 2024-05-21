@@ -26,20 +26,19 @@
         </thead>
         <tbody>
         <tr th:each="p:${maliste}">
-            <th scope="row" th:text="${p.getId_produit}"></th>
+            <th scope="row" th:text="${p.Id_produit}"></th>
             <td th:text="${p.getTitre_produit}"></td>
             <td th:text="${p.getType}"></td>
-            *<td th:text="${p.getCouleur}"></td>
+            <td th:text="${p.getCouleur}"></td>
             <td th:text="${p.getPrix}"></td>
             <td>
-                <a  class="btn btn-danger" onclick="confirmDelete('${p.getId_produit}')">Delete</a>
-                <a  class="btn btn-primary" th:href="@{/edit-produit/{id_produit}(id=${p.id_produit})}">Modify</a>
+                <button class="btn btn-danger" th:onclick="'confirmDelete(' + ${p.Id_produit} + ')'">Delete</button>
+                <a class="btn btn-primary" th:href="@{/edit-produit/{Id_produit}(Id_produit=${p.Id_produit})}">Modify</a>
             </td>
         </tr>
         </tbody>
 
     </table>
-
 
     <nav aria-label="...">
         <ul class="pagination">
@@ -58,13 +57,11 @@
     <button type="button" class="btn btn-success" onclick="location.href='/Add_Produit'">Add Produit</button>
 </div>
 
-<!-- Button to add a new client -->
-
 <script>
-    function confirmDelete(id_produit) {
+    function confirmDelete(produitId) {
         if (confirm("Are you sure you want to delete this produit?")) {
             // If user confirms, redirect to delete endpoint
-            location.href = "/delete-produit?id=" + id_produit;
+            location.href = "/delete-produit/" + produitId;
         }
     }
 </script>
